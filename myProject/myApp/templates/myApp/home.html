@@ -1,0 +1,32 @@
+Hello MazelTov and Skilledhq!
+
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Login</h2>
+
+     {% if form.errors %}
+     <div class="error-message">
+         {% for field in form %}
+             {% for error in field.error %}
+                 <p>{{ error }}</p>
+             {% endfor %}
+         {% endfor %}
+         {% for error in form.non_field_error %}
+             <p>{{ error }}</p>
+         {% endfor %}
+     </div>
+     {% endif %}
+     
+     <from method="post" action="{% url'login }">
+         {% csrf_token %}
+         {{ foem.as_p }}
+         <button type="submit">Login</button>
+     </form>
+
+     <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+    </div>
+    {% endblock %}
